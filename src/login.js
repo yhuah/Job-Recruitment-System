@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import * as firebase from 'firebase';
 import AppBar from 'material-ui/AppBar/AppBar';
+import Container from '@material-ui/core/Container';
 
 class Login extends Component {
     constructor() {
@@ -20,7 +21,7 @@ class Login extends Component {
                 Contact_Number: '',
                 Passport_Number: '',
                 NIC_Number: '',
-                 type: ''
+
 
             },
             fields: [],
@@ -42,25 +43,8 @@ class Login extends Component {
             const rootRef = firebase.database().ref();
             const speedRef = rootRef.child('USER/' + userId);
             speedRef.on('value', snap => {
-                typeCheck = snap.val().type;
-                //console.log(typeCheck);
-                
-                if (typeCheck == 'student') {
 
                     this.props.history.push('/student');
-                    console.log("if k andr hun");
-                }
-                // console.log('Hello Student!');
-
-                if (typeCheck == 'company') {
-
-                    this.props.history.push('/company');
-                    console.log(typeCheck);
-                }
-                //console.log('hello Company');
-                if (typeCheck == 'Admin') {
-                    this.props.history.push('/Admin');
-                }
 
             })
 
@@ -105,7 +89,7 @@ class Login extends Component {
 
     render() {
         return (
-
+            <Container component="main" maxWidth="xs">
 
             <div>
                 <form>
@@ -113,7 +97,7 @@ class Login extends Component {
                         <AppBar style={{ backgroundColor: '#212121' }} title='Login' ></AppBar>
                     </div>
                     <TextField
-                        name="e_mail"
+                        name="Email"
                         hintText="Email"
                         floatingLabelText="Email"
                         value={this.state.myInfo.e_mail}
@@ -142,12 +126,12 @@ class Login extends Component {
                         pathname: '/Signup',
                         data: this.state.myInfo
 
-
                     }}>
                         <Button variant="contained" >Don't have account?</Button>
                     </Link>
                 </form>
             </div>
+            </Container>
 
         )
 

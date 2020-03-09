@@ -5,6 +5,8 @@ import AppBar from 'material-ui/AppBar';
 import * as firebase from 'firebase';
 import './signup.css';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import {Link} from "react-router-dom";
 
 class SignUp extends Component {
     constructor() {
@@ -21,7 +23,7 @@ class SignUp extends Component {
                 Contact_Number: '',
                 Passport_Number: '',
                 NIC_Number: '',
-                type: ''
+
 
             },
             fields: [],
@@ -45,7 +47,7 @@ class SignUp extends Component {
                 lName: this.state.myInfo.lName,
                 e_mail: this.state.myInfo.e_mail,
                 password: this.state.myInfo.password,
-                type: this.state.type
+
 
             });
 
@@ -85,16 +87,12 @@ class SignUp extends Component {
 
     render() {
         return (
+            <Container component="main" maxWidth="xs">
 
             <div>
                 <form>
                     <div>
                         <AppBar style={{ border:'5px solid gray' ,  backgroundColor: '#212121' }} title='Sign Up' />
-                        <div className='radioButton' onChange={this.SelectUserType.bind(this)} >
-                            <input type='radio' value='student' name='user' /> student
-                            <input type='radio' value='company' name='user' /> company
-                         {/* <input type='radio' value='Admin' name='user'  /> Admin  */}
-                        </div>
                     </div>
 
                     <TextField
@@ -119,8 +117,8 @@ class SignUp extends Component {
 
                     <TextField
                         name="e_mail"
-                        hintText="e_mail"
-                        floatingLabelText="e_mail"
+                        hintText="Email"
+                        floatingLabelText="Email"
                         value={this.state.myInfo.e_mail}
                         onChange={this.inputChange.bind(this, "e_mail")}
                         floatingLabelFixed
@@ -136,9 +134,19 @@ class SignUp extends Component {
                         floatingLabelFixed
                     />
                     <br></br>
-                    <Button  variant="contained" onClick={this.handleClick.bind(this)}><b>Sign Up</b></Button>
+
+
+                    <Link to={{
+                        pathname: '/',
+                        data: this.state.myInfo
+
+                    }}>
+                        <Button  variant="contained" onClick={this.handleClick.bind(this)}><b>Sign Up</b></Button>
+
+                    </Link>
                 </form>
             </div>
+            </Container>
         )
     }
 }
