@@ -25,7 +25,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <div className="App-header">
-            <h2 id="titlename">Job Portal</h2>
+            <h2 id="titlename">Job Hunter</h2>
             {/* <img id="HeaderImage" src="home/atif/hello-world/src//title.jpg" alt="logo"/>  */}
             {/* <img src="title.jpg" alt="logo" height="250" width="250" /> */}
           </div>
@@ -45,7 +45,7 @@ class App extends Component {
            </Router> 
 
 
-          {/* <Header/>  */}  
+          { /*<Header/> *}
           {/* <Main /> */}
 
         </div>

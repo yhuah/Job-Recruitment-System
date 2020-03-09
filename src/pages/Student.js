@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LeftPanelStudents from '../LeftPanelStudents';
 import * as firebase from 'firebase';
 import Logout from '../logout';
+import Nav from '../Nav'
 
 class Student extends Component {
     constructor() {
@@ -22,7 +23,6 @@ class Student extends Component {
     render() {
         return (
             <div>
-                
                 <LeftPanelStudents {...this.props}/>
                 <Logout {...this.props}/>
             </div>

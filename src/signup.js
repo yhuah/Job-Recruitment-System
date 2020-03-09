@@ -52,6 +52,7 @@ class SignUp extends Component {
             });
 
         });
+        this.props.history.push("/")
 
 
     }
@@ -134,16 +135,8 @@ class SignUp extends Component {
                         floatingLabelFixed
                     />
                     <br></br>
-
-
-                    <Link to={{
-                        pathname: '/',
-                        data: this.state.myInfo
-
-                    }}>
                         <Button  variant="contained" onClick={this.handleClick.bind(this)}><b>Sign Up</b></Button>
 
-                    </Link>
                 </form>
             </div>
             </Container>
