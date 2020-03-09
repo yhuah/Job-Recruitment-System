@@ -33,47 +33,47 @@ class ViewJobs extends Component {
 
   componentDidMount() {
 
-    //var currentUserType=firebase.auth().currentUser.type;
-    var currentUserEmail = firebase.auth().currentUser.email
-    console.log('currentuser email' + currentUserEmail)
-    var email = currentUserEmail;
-    console.log('email', email)
-    var uid = firebase.auth().currentUser.uid
-    console.log('current id' + uid)
-    const rootRef = firebase.database().ref();
-    var speedRef = rootRef.child('Job/');
-    speedRef.on('value', snap => {
-      var uid = firebase.auth().currentUser.email;
-      var userobj = snap.val();
-      var key = Object.keys(userobj);
-      this.setState({ key })
-      for (var i = 0; i < key.length; i++) {
-        var k = key[i];
-
-        // console.log('a',userobj[k]);
-
-        if (userobj[k]) {
-          this.state.JobInfo[i] = {};
-
-          this.state.JobInfo[i].CompanyId = userobj[k].CompanyId;
-          this.state.JobInfo[i].jobtitle = userobj[k].jobtitle;
-          this.state.JobInfo[i].description = userobj[k].description;
-          this.state.JobInfo[i].salary = userobj[k].salary;
-
-        }
-        // else { console.log("anything", userobj[i].JobInfo) }
-      }
-
-
-      // if(userobj[k].type=='Admin') {
-
-      // }
-
-
-      this.setState({ JobInfo: this.state.JobInfo,key: this.state.key  })
-     // this.setState({ key: this.state.key })
-      //  this.setState({email:this.state.e_mail})
-    })
+    // //var currentUserType=firebase.auth().currentUser.type;
+    // var currentUserEmail = firebase.auth().currentUser.email
+    // console.log('currentuser email' + currentUserEmail)
+    // var email = currentUserEmail;
+    // console.log('email', email)
+    // var uid = firebase.auth().currentUser.uid
+    // console.log('current id' + uid)
+    // const rootRef = firebase.database().ref();
+    // var speedRef = rootRef.child('Job/');
+    // speedRef.on('value', snap => {
+    //   var uid = firebase.auth().currentUser.email;
+    //   var userobj = snap.val();
+    //   var key = Object.keys(userobj);
+    //   this.setState({ key })
+    //   for (var i = 0; i < key.length; i++) {
+    //     var k = key[i];
+    //
+    //     // console.log('a',userobj[k]);
+    //
+    //     if (userobj[k]) {
+    //       this.state.JobInfo[i] = {};
+    //
+    //       this.state.JobInfo[i].CompanyId = userobj[k].CompanyId;
+    //       this.state.JobInfo[i].jobtitle = userobj[k].jobtitle;
+    //       this.state.JobInfo[i].description = userobj[k].description;
+    //       this.state.JobInfo[i].salary = userobj[k].salary;
+    //
+    //     }
+    //     // else { console.log("anything", userobj[i].JobInfo) }
+    //   }
+    //
+    //
+    //   // if(userobj[k].type=='Admin') {
+    //
+    //   // }
+    //
+    //
+    //   this.setState({ JobInfo: this.state.JobInfo,key: this.state.key  })
+    //  // this.setState({ key: this.state.key })
+    //   //  this.setState({email:this.state.e_mail})
+    // })
   }
 
   DeleteRecord(row) {
@@ -126,7 +126,7 @@ class ViewJobs extends Component {
 
     return (
 
-      <Paper style={{ backgroundColor: '#BDBDBD' }}>
+      <Paper style={{ backgroundColor: '#FFFFF' }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -182,4 +182,4 @@ const styles = theme => ({
     minWidth: 700,
   },
 });
-export default withStyles(styles)(ViewJobs);
+export default  withStyles(styles)(ViewJobs);

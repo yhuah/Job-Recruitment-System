@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 /* body{
@@ -7,38 +7,44 @@
 } */
 
 .App-header {
-  background-color:#212121;
-  height: 200px;
-  color: white;
-  font-size: large;
+    background-image: linear-gradient(#E66465, #9198E5);
+    height: 100px;
+    color: white;
+    font-size: large;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
-footer{
-  margin-top: 600px;
-  background-color: dodgerblue;
-  height: 70px;
-  padding: 20px;
-  color: white;
+footer {
+    margin-top: 600px;
+    background-color: dodgerblue;
+    height: 70px;
+    padding: 20px;
+    color: white;
 }
-a{
-  color: white;
+
+a {
+    color: white;
 }
-#titlename{
-color: white;
-font-size: xx-large;
-padding-top: 20px;
+
+#titlename {
+    color: white;
+    font-size: 50px;
+    padding-top: 20px;
+    text-shadow: 0 0 6px #FF9966, -1px -1px #FFF, 1px -1px #444;
+
 
 }
-#headerImage{
-  height: 130px;
-  width: 350px;
-   
+
+#headerImage {
+    height: 130px;
+    width: 350px;
+
 }
-#studentlink{
-  color: blue;
+
+#studentlink {
+    color: blue;
 
 }

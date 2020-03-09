@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as firebase from 'firebase';
 import StudentDetails from './StudentDetails';
 import ViewCompany from './ViewCompany'
@@ -9,6 +9,8 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import Market from "./Market";
+import TaskDetails from "./TaskDetails";
 
 class LeftPanelStudents extends Component {
 
@@ -28,7 +30,7 @@ class LeftPanelStudents extends Component {
             speedRef.on('value', snap => {
                 var userName = snap.val().fname
                 console.log(userName);
-                this.setState({ user: userName })
+                this.setState({user: userName})
             });
         })
     }
@@ -48,25 +50,28 @@ class LeftPanelStudents extends Component {
     render() {
         return (
             <Router>
-                <div style={{backgroundColor:'#BDBDBD'}}>
-                     {this.state.user?
-                    <div>
-                        <h1> Student </h1>
-                        <h2 style={{ color: '#212121' }}>{this.state.user}</h2>
-                        <p><Link className='link' to='/student/StudentDetails' > Student Details </Link></p>
-                       
-                        <p><Link className='link' to='/student/ViewJobs'>ViewJobs</Link> </p>
-                        <p><Link className='link' to='/student/ViewCompany'>ViewCompany</Link> </p>                        
+                <div style={{backgroundColor: '#FFFFFF'}}>
+                    {this.state.user ?
+                        <div>
+                            <h1> Student </h1>
+                            <h2 style={{color: '#212121'}}>{this.state.user}</h2>
+                            <p><Link className='link' to='/student/StudentDetails'> Student Details </Link></p>
 
-                    </div> 
-                    :
-                    <h4>Login first!!!</h4>
-                     }
-                    <Route path='/student/StudentDetails' component={StudentDetails} />
-                    <Route path='/student/ViewJobs' component={ViewJobs} />
-                    <Route path='/student/ViewCompany' component={ViewCompany} />
+                            <p><Link className='link' to='/student/ViewJobs'>ViewJobs</Link></p>
+                            {/*<p><Link className='link' to='/student/ViewCompany'>ViewCompany</Link></p>*/}
+                            <p><Link className='link' style={{color:'#212121'}} to='/student/Market'>Market</Link></p>
 
-                   
+                        </div>
+                        :
+                        <h4>Login first!!!</h4>
+                    }
+
+                    <Route path='/student/StudentDetails' component={StudentDetails}/>
+                    <Route path='/student/ViewJobs' component={ViewJobs}/>
+                    {/*<Route path='/student/ViewCompany' component={ViewCompany}/>*/}
+                    <Route path='/student/Market' exact component={Market}/>
+                    <Route path='/student/Market/:id' component={TaskDetails}/>
+
 
                 </div>
 
@@ -74,4 +79,5 @@ class LeftPanelStudents extends Component {
         )
     }
 }
+
 export default LeftPanelStudents;
