@@ -68,6 +68,8 @@ class Market extends Component {
                 loading: false
             });
         });
+        console.log(auth.currentUser.uid)
+
 
 
     }
