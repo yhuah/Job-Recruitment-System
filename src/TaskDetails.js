@@ -12,7 +12,7 @@ class TaskDetails extends Component {
     constructor() {
         super();
         this.state = {
-            isPoster: true,
+            isPoster: false,
             uid: null
         }
     }
@@ -27,22 +27,15 @@ class TaskDetails extends Component {
                 let ref = database.ref("user-task/" + user.uid);
                 console.log(this.state.uid);
                 this.data = ref.on("value", (snapshot) => {
-                    const task = [];
                     snapshot.forEach(data => {
-                        task.push(data.val());
-                    });
-                    task.forEach(function (entry)  {
-                        if(true){
-                            console.log(entry)
-                        }
-                    });
-                    console.log(snapshot.val());
-                    if(true) {
-                        this.setState({
-                                isPoster : true
-                            }
-                        )
-                    }
+                        console.log(data.val())
+                       if(data.val()["task_id"] === this.props.match.params.id)  {
+                           console.log("is poster")
+                           this.setState({
+                               isPoster: true
+                           })
+                       }
+                     });
                 });
                 this.setState({
                     uid : user.uid
@@ -71,7 +64,7 @@ class TaskDetails extends Component {
                     <Paper elevation={5}>
                         <TaskDetails_detail id={this.props.match.params.id}/>
 
-                        <Button disabled = {!this.state.isPoster} variant="contained" color="primary" href={'/apply/'+this.props.match.params.id}>Apply</Button>
+                        <Button disabled = {this.state.isPoster} variant="contained" color="primary" href={'/apply/'+this.props.match.params.id}>Apply</Button>
 
 
                         <Button variant="contained" color="red" href={'/market'}>Back</Button>
