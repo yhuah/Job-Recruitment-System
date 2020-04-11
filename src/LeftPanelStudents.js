@@ -80,7 +80,9 @@ class LeftPanelStudents extends React.Component {
                                     <h3 id="mypost">My Post</h3>
                                     <Divider/>
                                     {this.state.postdata.length ?
-                                        <JobListPost id='joblist' data={this.state.postdata}/> :
+                                        <div style={{'padding-top': '20px', 'padding-left': '30px','padding-bottom': '20px'}}>
+                                        <JobListPost id='joblist' data={this.state.postdata}/>
+                                        </div>:
                                         <div style={{'padding-top': '20px', 'padding-left': '30px','padding-bottom': '20px'}}>
                                             <Link style={{'color': '#fb601d'}} to="/postjob">
                                                 <h5>Post a Task Now!</h5>

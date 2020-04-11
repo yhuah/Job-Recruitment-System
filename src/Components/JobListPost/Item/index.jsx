@@ -22,13 +22,13 @@ class JobItem extends React.Component {
         let link = "/jobSummary/post/" + item.task_id;
         return (
             <li className="comment-item" style={{'color': 'white'}}>
-                <h3>
+                <h3 style={{'padding-left': '30'}}>
                     <i className="icon-user"></i>
                     <NavLink href={link}>{item.title} &nbsp;
                         {/*{item.status == '1' ? <FontAwesomeIcon icon={faUserClock}/> : ''} */}
                     </NavLink>
                 </h3>
-                <p style={{color: '#FFFFFF', paddingLeft: '40px'}}>Status:&nbsp;
+                <p style={{color: '#FFFFFF', 'padding-left': '40px'}}>Status:&nbsp;
                     {parseCode(item.status)}
                 </p>
                 <Divider/>
