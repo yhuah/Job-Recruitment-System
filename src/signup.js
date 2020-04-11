@@ -13,9 +13,7 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName:'',
-
+            displayName: '',
             email: '',
             passOne: '',
             passTwo: '',
@@ -45,8 +43,7 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         var registrationInfo = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+            displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.passOne
         };
@@ -61,7 +58,7 @@ class SignUp extends Component {
             .then(()=>{
 
 
-                this.registerUser(registrationInfo.firstName);
+                this.registerUser(registrationInfo.displayName);
                // this.props.history.push('/');
 
 
@@ -83,10 +80,10 @@ class SignUp extends Component {
             }).then(() => {
                 this.setState({
                     user: FBUser,
-                    firstName: FBUser.displayName,
+                    displayName: FBUser.displayName,
                     userID: FBUser.uid
                 });
-                this.props.history.push('/');
+                this.props.history.push('/login');
             });
         });
     };
@@ -116,33 +113,17 @@ class SignUp extends Component {
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                id="first Name"
-                                                placeholder="First Name"
-                                                name="firstName"
+                                                id="display Name"
+                                                placeholder="Display Name"
+                                                name="displayName"
                                                 required
-                                                value={this.state.firstName}
+                                                value={this.state.displayName}
                                                 onChange={this.handleChange}
                                             />
                                         </section>
-                                        <section className="col-sm-12 form-group">
-                                            <label
-                                                className="form-control-label sr-only"
-                                                htmlFor="lastName"
-                                            >
-                                                First Name
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                id="lastName"
-                                                placeholder="Last Name"
-                                                name="last Name"
-                                                required
-                                                value={this.state.lastName}
-                                                onChange={this.handleChange}
-                                            />
-                                        </section>
+
                                     </div>
+
                                     <section className="form-group">
                                         <label
                                             className="form-control-label sr-only"

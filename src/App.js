@@ -12,6 +12,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import TaskDetails from "./TaskDetails";
 import PostJob from "./PostJob";
 import Profile from "./MyProfile"
+import Login from "./login"
 import {Container} from "reactstrap";
 import PrivateRoute from "./PrivateRoute";
 import JobSummaryPost from "./pages/JobSummaryPost";
@@ -26,7 +27,7 @@ const App = () => (
                 <Header/>
                 <div>
                     <Route exact path='/' component={Market}/>
-                    <Route exact path='/login' component={Login2}/>
+                    <Route exact path='/login' component={Login}/>
                     <Route exact path='/apply/:id' component={ApplyJob}/>
                     <Route exact path='/student' component={Student}/>
                     <Route exact path='/SignUp' component={SignUp}/>

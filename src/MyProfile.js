@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import firebase from './firebase'
 import withAuthorization from "./withAuthorization";
 
+
+
 class Profile extends React.Component {
     constructor(props) {
         super(props);
@@ -37,21 +39,6 @@ class Profile extends React.Component {
                 });
 
 
-
-
-               /* profileRef.on('value', snapshot=>{
-                    let profile = snapshot.val()
-                    if(profile.firstName!=null && profile.lastName!=null && profile.phone!=null){
-
-                    this.setState({
-
-                        firstName: profile.firstName,
-                        lastName:profile.lastName,
-                        phone: profile.phone
-
-
-                    })}
-                })*/
 
 
 
@@ -94,6 +81,7 @@ class Profile extends React.Component {
             email: this.state.email
 
         });
+        alert("your have updated your profile")
 
         console.log(this.state)
 
@@ -129,7 +117,7 @@ class Profile extends React.Component {
             .auth()
             .signOut()
             .then(() => {
-                this.props.history.push('/');
+                this.props.history.push('/login');
             });
     };
 
@@ -149,70 +137,26 @@ class Profile extends React.Component {
                             <div className="col-sm-10">
                                 <input className="form-control" id="username"
                                        value={this.state.username} placeholder="Mike"
+                                       disabled="disabled"
                                        onChange={(event) => this.setState({username: event.target.value})
                                        }/>
                             </div>
                         </div>
-                        <div className="form-group row">
-                            <label htmlFor="firstName" className="col-sm-2 col-form-label">
-                                <span className="mr-2">First Name</span>
-                            </label>
-                            <div className="col-sm-10">
-                                <input type="password" className="form-control" id="firstname"
-                                       value={this.state.firstName} placeholder="alice"
-                                       onChange={(event) => this.setState({firstName: event.target.value})}
-                                />
-                            </div>
-                        </div>
-                        <div className="form-group row">
-                            <label htmlFor="password" className="col-sm-2 col-form-label">
-                                <span className="mr-2">Last Name</span>
-                            </label>
-                            <div className="col-sm-10">
-                                <input type="email" className="form-control" id="email"
-                                       value={this.state.lastName} placeholder="wonderland"
-                                       onChange={(event) => this.setState({lastName: event.target.value})}
-                                />
-                            </div>
-                        </div>
 
 
-                        <div className="form-group row">
-                            <label htmlFor="phone" className="col-sm-2 col-form-label">
-                                <span className="mr-2">Phone</span>
-                            </label>
-                            <div className="col-sm-10">
-                                <input className="form-control" id="phone"
-                                       value={this.state.phone} placeholder="(555) 123-4324"
-                                       onChange={(event) => this.setState({phone: event.target.value})}
-                                />
-                            </div>
-                        </div>
                         <div className="form-group row">
                             <label htmlFor="email" className="col-sm-2 col-form-label">
                                 <span className="mr-2">Email</span>
                             </label>
                             <div className="col-sm-10">
                                 <input type="email" className="form-control" id="email"
+                                       disabled="disabled"
                                        value={this.state.email} placeholder="alice@wonderland.com"
                                        onChange={(event) => this.setState({email: event.target.value})}
                                 />
                             </div>
                         </div>
 
-
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label"></label>
-                            <div className="col-sm-10">
-                                <button className="btn btn-primary btn-block btn-success"
-                                        onClick={this.profileUpdate}
-
-                                        >
-                                    Update
-                                    <i className="fas fa-pen"></i>
-                                </button>
-                            </div>
-                        </div>
                         <div className="form-group row">
                             <lable className="col-sm-2 col-form-label"></lable>
                             <div className="col-sm-10">
