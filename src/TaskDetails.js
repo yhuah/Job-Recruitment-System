@@ -13,7 +13,7 @@ class TaskDetails extends Component {
         super();
         this.state = {
             isPoster: true,
-            uid: " "
+            uid: null
         }
     }
 
@@ -24,41 +24,45 @@ class TaskDetails extends Component {
         }
         auth.onAuthStateChanged(user =>{
             if(user){
+                let ref = database.ref("user-task/" + user.uid);
+                console.log(this.state.uid);
+                this.data = ref.on("value", (snapshot) => {
+                    const task = [];
+                    snapshot.forEach(data => {
+                        task.push(data.val());
+                    });
+                    task.forEach(function (entry)  {
+                        if(true){
+                            console.log(entry)
+                        }
+                    });
+                    console.log(snapshot.val());
+                    if(true) {
+                        this.setState({
+                                isPoster : true
+                            }
+                        )
+                    }
+                });
                 this.setState({
                     uid : user.uid
                 })
+                console.log(this.state.uid)
             }
             else {
                 console.log("user not logged in")
             }
         })
 
-        if(this.state.uid) {
-            let ref = database.ref("user-task/" + this.state.uid);
-            console.log(this.state.uid);
-            this.data = ref.on("value", (snapshot) => {
-                const task = [];
-                snapshot.forEach(data => {
-                    task.push(data.val());
-                });
-                task.forEach(function (entry)  {
-                    if(true){
-                        console.log(entry)
-                    }
-                });
-                console.log(snapshot.val());
-                if(true) {
-                    this.setState({
-                            isPoster : true
-                        }
-                    )
-                }
-            });
-        }
+
+
+
+
 
     }
 
     render() {
+
         return (
             <Container fixed>
                 <hr/>
