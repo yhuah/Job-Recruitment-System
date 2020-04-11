@@ -24,11 +24,11 @@ class TaskDetails extends Component {
         }
         auth.onAuthStateChanged(user =>{
             if(user){
-                let ref = database.ref("user-task/" + user.uid);
+                let ref = database.ref("user-task/" + user.uid +"/task");
                 console.log(this.state.uid);
                 this.data = ref.on("value", (snapshot) => {
                     snapshot.forEach(data => {
-                        console.log(data.val())
+                        console.log(data.val()["task_id"])
                        if(data.val()["task_id"] === this.props.match.params.id)  {
                            console.log("is poster")
                            this.setState({
