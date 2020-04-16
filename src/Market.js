@@ -15,6 +15,13 @@ import TableBody from "@material-ui/core/TableBody";
 import {auth, database} from "./firebase";
 import {convertTime} from "./timeFormat";
 
+function searchingFor(search) {
+    return function(x){
+        return x.title.toLowerCase().includes(search.toLowerCase()) || !search;
+    }
+
+}
+
 class Market extends Component {
 
     constructor(props) {
@@ -22,13 +29,17 @@ class Market extends Component {
 
         this.state = {
             tasks: [],
-            loading: true
+            loading: true,
+            search: ""
         }
+
+        this.searchHandler = this.searchHandler.bind(this);
     }
+
 
     componentDidMount() {
         let ref = database.ref("task");
-        this.data = ref.on("value", (snapshot) => {
+        this.data = ref.orderByChild("status").equalTo("1.1").on("value", (snapshot) => {
             const task = [];
             snapshot.forEach(data => {
                 task.push(data.val());
@@ -41,15 +52,25 @@ class Market extends Component {
     }
 
 
+
+
+
     //TODO: Search
     handleSearchClick() {
-        // console.log("clicked!");
+        console.log("clicked!");
+        console.log(this.state.input)
         // database.ref.on("value", function(snapshot) {
         //     console.log(snapshot.val());
         // }, function (errorObject) {
         //     console.log("The read failed: " + errorObject.code);
         // });
         // console.log(tasksData);
+    }
+
+    searchHandler(event) {
+        this.setState({
+            search:event.target.value
+        })
     }
 
 
@@ -63,11 +84,11 @@ class Market extends Component {
                 <div className="Market">
                     <hr/>
                     <h1 className="MarketHeader">Task Market</h1>
-                    <label>
-                        <TextField id="filled-basic" variant="filled" label={"Search task here"}/>
-                        <Button variant="contained" color="primary" size="large" style={{padding: "14.5px 5px"}}
-                                onClick={this.handleSearchClick}>Search</Button>
-                    </label>
+                    <form onSubmit={this.handleSearchClick}>
+                        <TextField id="filled-basic" variant="filled" label={"Search task here"} onChange = {this.searchHandler}/>
+                        {/*<Button variant="contained" color="primary" size="large" style={{padding: "14.5px 5px"}}*/}
+                        {/*        onClick={this.handleSearchClick}>Search</Button>*/}
+                    </form>
 
 
                     <TableContainer component={Paper}>
@@ -82,7 +103,7 @@ class Market extends Component {
                             </TableHead>
                             <TableBody>
                                 {
-                                    this.state.tasks.map(row => (
+                                    this.state.tasks.filter(searchingFor(this.state.search)).reverse().map(row => (
                                         <TableRow key={row.task_id}>
                                             <TableCell align="left" component="th" scope="row">
                                                 <Link href={`/jobdetail/${row.task_id}`}>{row.title}</Link>
